@@ -43,7 +43,7 @@ var weights = [];
 var started = false;
 var background;
 var splashDisplay;
-var stars;
+var stars = [];
 
 function preload() {
     game.load.image("playerImg", "../assets/httyd3");
@@ -240,6 +240,7 @@ function gameOver(){
     //game.state.restart();
     //location.reload();
     gameGravity = 200;
+    stars = [];
 
 }
 
@@ -327,4 +328,11 @@ function start(){
         generate);
     splashDisplay.destroy();
 
+}
+
+function addStar(x,y) {
+    var star = game.add.sprite(x, y, "star");
+    stars.push(star);
+    game.physics.arcade.enable(star);
+    star.body.velocity.x = - gameSpeed;
 }
