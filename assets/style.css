@@ -1,0 +1,49 @@
+h1{
+    color: darkorange;
+    font-size: 35px;
+    font-style: inherit;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.score {
+    color: #333333;
+    font-style: inherit;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
+    font-size: 25px;
+}
+#gameLink {
+    text-align: center;
+    border: 1px transparent;
+    color: dodgerblue;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+}
+.enjoy {
+    color: #5f5d83;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif ;
+    font-size: 25px;
+    text-align: center;
+}
+
+#centre {
+    text-align: center;
+}
+
+body{
+    background-image: url("../assets/httydbackdrop2");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#greeting {
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    background: #fff;
+    width: 350px;
+    height: 300px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 20px;
+    display: none;
+}
