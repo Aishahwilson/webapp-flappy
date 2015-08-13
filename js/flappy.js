@@ -16,6 +16,7 @@ var jumpPower = 200;
 var gapSize = 100
 var gapMargin = 50
 var blockHeight = 50
+var starHeight = 50
 
 var game = new Phaser.Game(width, height, Phaser.AUTO, 'game', stateActions);
 
@@ -43,7 +44,9 @@ var weights = [];
 var started = false;
 var background;
 var splashDisplay;
-var stars = [];
+//var stars = [];
+//var pipeEndExtraWidth = 60
+//var pipeEndHeight = 25
 
 function preload() {
     game.load.image("playerImg", "../assets/httyd3");
@@ -52,8 +55,8 @@ function preload() {
     game.load.image("pipe","../assets/Stone_slab");
     game.load.image("balloon", "../assets/gold_coin");
     game.load.image("weight", "../assets/red_egg");
-    game.load.image("stars", "../assets/star.png")
-
+    //game.load.image("stars", "../assets/star.png")
+    //game.load.image("pipend", "../assets/pipe-end.png")
 }
 
 /*
@@ -109,6 +112,7 @@ function create() {
         .addKey(Phaser.Keyboard.ENTER)
         .onDown.add(start);
     splashDisplay = game.add.text(250, 150, "Press ENTER to start");
+    //game.add.sprite = (addStar)
 
 
 }
@@ -161,6 +165,29 @@ function generatePipe() {
     }
 
        changeScore();
+   /* addPipeEnd(width-5,gapStart - 25);
+
+    for(var y=gapStart - 75; y>-50; y -= 50){
+        addPipeBlock(width,y);
+    }
+    addPipeEnd(width-(pipeEndExtraWidth/2), gapStart-pipeEndHeight);
+    for(var y=gapStart-pipeEndHeight; y>0 ; y-=blockHeight) {
+        addPipeBlock(width,y - blockHeight);
+    }
+
+    addPipeEnd(width-(pipeEndExtraWidth/2), gapStart+gapSize);
+    for(var y=gapStart+gapSize+pipeEndHeight; y<height; y+=blockHeight) {
+        addPipeBlock(width,y);
+    }
+
+
+
+    addStar(width, gapStart + (gapSize / 2) - (starHeight / 2));
+
+    addPipeEnd(width-5,gapStart+pipeGap);
+    for(var y=gapStart + pipeGap + 25; y<height; y += 50){
+        addPipeBlock(width,y);
+    }*/
 }
 
 function addPipeBlock(x, y) {
@@ -171,6 +198,15 @@ function addPipeBlock(x, y) {
     game.physics.arcade.enable(pipeBlock);
     pipeBlock.body.velocity.x = -gameSpeed;
 }
+/*function addPipeEnd(x, y) {
+// create a new pipe block
+    var pipeEnd = game.add.sprite(x,y,"pipend");
+// insert it in the 'pipes' array
+    pipes.push(pipeEnd);
+    game.physics.arcade.enable(pipeEnd);
+    pipeBlock.body.velocity.x = -gameSpeed;
+}*/
+
 function playerJump() {
     player.body.velocity.y = -jumpPower;
 }
@@ -198,8 +234,8 @@ function update() {
                 changeGravity(-50);
                 balloons[i].destroy();
                 balloons.splice(i, 1);
-
-            });
+                changeScore()
+            }); 
         }
         for (var i = weights.length - 1; i >= 0; i--) {
             game.physics.arcade.overlap(player, weights[i], function () {
@@ -210,11 +246,19 @@ function update() {
 
             }, gameOver);
         }
+       /* for(var i=stars.length - 1; i>=0; i--){
+            game.physics.arcade.overlap(player,stars[i], function(){
+                stars[i].destroy();
+                stars.splice(i,1);
+                changeScore();
+            });
+        }*/
 
         // checkBonus(balloons, -50);
         // checkBonus(weights, 50);
 
     }
+
 }
 
 /*function checkBonus(bonusArray, bonusEffect){
@@ -240,7 +284,7 @@ function gameOver(){
     //game.state.restart();
     //location.reload();
     gameGravity = 200;
-    stars = [];
+   // stars = [];
 
 }
 
@@ -330,9 +374,9 @@ function start(){
 
 }
 
-function addStar(x,y) {
+/*function addStar(x,y) {
     var star = game.add.sprite(x, y, "star");
     stars.push(star);
     game.physics.arcade.enable(star);
     star.body.velocity.x = - gameSpeed;
-}
+}*/
