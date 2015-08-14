@@ -235,7 +235,7 @@ function update() {
                 balloons[i].destroy();
                 balloons.splice(i, 1);
                 changeScore()
-            }); 
+            });
         }
         for (var i = weights.length - 1; i >= 0; i--) {
             game.physics.arcade.overlap(player, weights[i], function () {
